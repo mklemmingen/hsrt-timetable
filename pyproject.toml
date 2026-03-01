@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hsrt-timetable"
+version = "0.1.0"
+description = "Hochschule Reutlingen timetable client — convenience wrapper for the WebUntis public API"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [{ name = "mklemmingen" }]
+keywords = ["webuntis", "timetable", "hsrt", "reutlingen", "university"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+]
+dependencies = ["webuntis-public>=0.1.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/mklemmingen/hsrt-timetable"
+Repository = "https://github.com/mklemmingen/hsrt-timetable"
+Issues = "https://github.com/mklemmingen/hsrt-timetable/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
