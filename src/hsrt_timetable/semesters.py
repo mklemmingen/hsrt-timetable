@@ -24,17 +24,24 @@ SEMESTERS: list[AcademicSemester] = [
 
 
 def get_semester(date: datetime.date | None = None) -> AcademicSemester | None:
-    """Return the academic semester containing the given date.
+    """Return the academic semester for the given date.
 
     Falls back to the current date if not specified.
-    Returns None if no matching semester is found.
+    First checks for an exact match (date within lecture period).
+    If no exact match, returns the nearest upcoming semester.
+    Returns None only if no future semesters exist.
     """
     if date is None:
         date = datetime.date.today()
     for sem in SEMESTERS:
         if sem.lecture_start <= date <= sem.lecture_end:
             return sem
-    return None
+    # No exact match — find the nearest upcoming semester
+    upcoming = [sem for sem in SEMESTERS if sem.lecture_start > date]
+    if upcoming:
+        return min(upcoming, key=lambda s: s.lecture_start)
+    # Past all known semesters — return the most recent one
+    return SEMESTERS[-1] if SEMESTERS else None
 
 
 def get_current_semester() -> AcademicSemester | None:

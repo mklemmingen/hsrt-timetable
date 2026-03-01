@@ -17,9 +17,20 @@ class TestGetSemester:
         assert sem is not None
         assert sem.name == "WS2025/26"
 
-    def test_between_semesters(self):
+    def test_between_semesters_returns_upcoming(self):
         sem = get_semester(datetime.date(2026, 2, 15))
-        assert sem is None
+        assert sem is not None
+        assert sem.name == "SS2026"
+
+    def test_day_before_semester_returns_upcoming(self):
+        sem = get_semester(datetime.date(2026, 3, 1))
+        assert sem is not None
+        assert sem.name == "SS2026"
+
+    def test_past_all_semesters_returns_last(self):
+        sem = get_semester(datetime.date(2028, 1, 1))
+        assert sem is not None
+        assert sem.name == "WS2026/27"
 
 
 class TestGetSemesterByName:
