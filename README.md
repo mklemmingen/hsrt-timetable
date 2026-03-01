@@ -57,4 +57,4 @@ parse_group_name("3MKIB4")  # ("MKIB", 4)
 
 ## License
 
-MIT
+Apache-2.0
