@@ -11,11 +11,14 @@ from .semesters import AcademicSemester, get_current_semester
 
 
 HSRT_SERVER = "hs-reutlingen.webuntis.com"
+HSRT_SCHOOL = "hs-reutlingen"
 
 
 class HSRTClient:
     """Convenience wrapper around :class:`WebUntisPublicClient` pre-configured
     for Hochschule Reutlingen.
+
+    Uses the anonymous REST API with the ``anonymous-school`` header.
 
     Usage::
 
@@ -25,7 +28,9 @@ class HSRTClient:
     """
 
     def __init__(self, *, rate_limit: float = 0.3) -> None:
-        self._client = WebUntisPublicClient(HSRT_SERVER, rate_limit=rate_limit)
+        self._client = WebUntisPublicClient(
+            HSRT_SERVER, school=HSRT_SCHOOL, rate_limit=rate_limit,
+        )
 
     @property
     def inner(self) -> WebUntisPublicClient:
