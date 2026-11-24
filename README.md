@@ -2,6 +2,8 @@
 
 Convenience Python client for accessing **Hochschule Reutlingen** timetable data via the WebUntis public API. Built on top of [`webuntis-public`](https://pypi.org/project/webuntis-public/).
 
+> **No longer maintained:** Hochschule Reutlingen has moved its timetables from WebUntis to HISinOne, so this package no longer returns data for HSRT.
+
 ## Installation
 
 ```bash
